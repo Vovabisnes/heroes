@@ -1,13 +1,27 @@
 import { useHttp } from '../../hooks/http.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { createSelector } from 'reselect';
 
 import { heroesFetching, heroesFetched, heroesFetchingError, heroDeleted } from '../../actions';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
 const HeroesList = () => {
-    const { heroes, heroesLoadingStatus, activeFilter } = useSelector(state => state);
+
+    const filteredHeroesSelector = createSelector(
+        (state) => state.filters.activeFilter,
+        (state) => state.heroes.heroes,
+        (filter, heroes) => {
+            if(filter === 'all'){
+                return heroes;
+            }
+            return heroes.filter(hero => hero.element === filter)
+        }
+    );
+
+    const filteredHeroes = useSelector(filteredHeroesSelector);
+    const {heroesLoadingStatus} = useSelector(state => state.heroes.heroesLoadingStatus);
     const dispatch = useDispatch();
     const { request } = useHttp();
 
@@ -32,7 +46,7 @@ const HeroesList = () => {
 
     const renderHeroesList = (arr) => {
         if (arr.length === 0) {
-            return <h5 className="text-center mt-5">Героев пока нет</h5>
+            return <h5 className="text-center mt-5">No hereos yet!</h5>
         }
 
         return arr.map(({ id, ...props }) => {
@@ -40,14 +54,7 @@ const HeroesList = () => {
         })
     }
 
-    const filterElements = () => {
-        if(activeFilter === 'all'){
-            return heroes;
-        }
-        return heroes.filter(hero => hero.element === activeFilter)
-    }
-
-    const elements = renderHeroesList(filterElements());
+    const elements = renderHeroesList(filteredHeroes);
     return (
         <ul>
             {elements}

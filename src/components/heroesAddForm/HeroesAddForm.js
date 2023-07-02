@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Spinner from '../spinner/Spinner';
 
 const HeroesAddForm = () => {
-    const { filters, filtersLoadingStatus } = useSelector(state => state);
+    const { filters, filtersLoadingStatus } = useSelector(state => state.filters);
     const { request } = useHttp();
     const dispatch = useDispatch();
 

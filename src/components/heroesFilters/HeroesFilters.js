@@ -5,7 +5,7 @@ import { useHttp } from '../../hooks/http.hook';
 import Spinner from '../spinner/Spinner';
 
 const HeroesFilters = () => {
-    const { filters, filtersLoadingStatus, activeFilter } = useSelector(state => state);
+    const { filters, filtersLoadingStatus, activeFilter } = useSelector(state => state.filters);
     const { request } = useHttp();
     const dispatch = useDispatch();
 
@@ -46,7 +46,7 @@ const HeroesFilters = () => {
     return (
         <div className="card shadow-lg mt-4">
             <div className="card-body">
-                <p className="card-text">Отфильтруйте героев по элементам</p>
+                <p className="card-text">Filter your heroes!</p>
                 <div className="btn-group">
                     {elements}
                 </div>
