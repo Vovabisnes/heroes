@@ -1,0 +1,43 @@
+{
+  "heroes": [
+    {
+      "id": "5a4eafee-ef56-4f48-950a-cddde0cf113d",
+      "name": "Abudim Buomsaada",
+      "text": "Projekt",
+      "element": "wind"
+    },
+    {
+      "id": "c201bb2a-3909-4e77-9a23-2f4596d0206d",
+      "name": "volodymyr havryliuk",
+      "description": "das",
+      "element": "water"
+    }
+  ],
+  "filters": [
+    {
+      "id": "0",
+      "name": "all",
+      "clazz": "btn btn-outline-dark"
+    },
+    {
+      "id": "1",
+      "name": "fire",
+      "clazz": "btn btn-danger"
+    },
+    {
+      "id": "2",
+      "name": "water",
+      "clazz": "btn btn-primary"
+    },
+    {
+      "id": "3",
+      "name": "wind",
+      "clazz": "btn btn-success"
+    },
+    {
+      "id": "4",
+      "name": "earth",
+      "clazz": "btn btn-secondary"
+    }
+  ]
+}
