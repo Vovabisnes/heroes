@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 import { useHttp } from '../../hooks/http.hook';
 import Spinner from '../spinner/Spinner';
 
-import { fetchFilters } from '../../actions';
-import {filtersChanged} from '../heroesFilters/filtersSlice'
+import {filtersChanged, fetchFilters} from '../heroesFilters/filtersSlice'
 
 const HeroesFilters = () => {
     const { filters, filtersLoadingStatus, activeFilter } = useSelector(state => state.filters);
