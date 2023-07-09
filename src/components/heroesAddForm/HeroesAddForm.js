@@ -4,11 +4,14 @@ import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import Spinner from '../spinner/Spinner';
+import { selectAll } from '../heroesFilters/filtersSlice';
+import store from '../../store/index';
 
 import { heroCreated } from '../heroesList/heroesSlice';
 
 const HeroesAddForm = () => {
-    const { filters, filtersLoadingStatus } = useSelector(state => state.filters);
+    const {filtersLoadingStatus } = useSelector(state => state.filters);
+    const filters = selectAll(store.getState());
     const { request } = useHttp();
     const dispatch = useDispatch();
 
