@@ -2,9 +2,10 @@ import { useHttp } from '../../hooks/http.hook';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { heroAdded, heroesFetchingError} from '../../actions';
 import { v4 as uuidv4 } from 'uuid';
 import Spinner from '../spinner/Spinner';
+
+import { heroCreated } from '../heroesList/heroesSlice';
 
 const HeroesAddForm = () => {
     const { filters, filtersLoadingStatus } = useSelector(state => state.filters);
@@ -18,8 +19,8 @@ const HeroesAddForm = () => {
         };
 
         request("http://localhost:3001/heroes", "POST", JSON.stringify(newHero))
-            .then(data => dispatch(heroAdded(data)))
-            .catch(() => dispatch(heroesFetchingError()));
+            .then(data => dispatch(heroCreated(data)))
+            .catch(err => console.log(err));
     };
 
     if (filtersLoadingStatus === "loading") {
